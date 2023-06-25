@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:8.0.2'
     }
 }
 
@@ -20,10 +20,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
+    namespace 'com.khronos.hello_xr'
 
     defaultConfig {
-        applicationId "com.khronos.hello_xr"
         minSdkVersion 26
         versionCode  201
         versionName  "2.0.1"
