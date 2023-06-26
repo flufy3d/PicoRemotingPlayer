@@ -108,7 +108,6 @@ bool UpdateOptionsFromCommandLine(Options& options, int argc, char* argv[]) {
 #endif
 }  // namespace
 
-#ifdef XR_USE_PLATFORM_ANDROID
 
 struct AndroidAppState {
     ANativeWindow* NativeWindow = nullptr;
@@ -266,67 +265,3 @@ void android_main(struct android_app* app) {
         Log::Write(Log::Level::Error, "Unknown Error");
     }
 }
-#else
-int main(int argc, char* argv[]) {
-    try {
-        // Parse command-line arguments into Options.
-        std::shared_ptr<Options> options = std::make_shared<Options>();
-        if (!UpdateOptionsFromCommandLine(*options, argc, argv)) {
-            return 1;
-        }
-
-        std::shared_ptr<PlatformData> data = std::make_shared<PlatformData>();
-
-        // Spawn a thread to wait for a keypress
-        static bool quitKeyPressed = false;
-        auto exitPollingThread = std::thread{[] {
-            Log::Write(Log::Level::Info, "Press any key to shutdown...");
-            (void)getchar();
-            quitKeyPressed = true;
-        }};
-        exitPollingThread.detach();
-
-        bool requestRestart = false;
-        do {
-            // Create platform-specific implementation.
-            std::shared_ptr<IPlatformPlugin> platformPlugin = CreatePlatformPlugin(options, data);
-
-            // Create graphics API implementation.
-            std::shared_ptr<IGraphicsPlugin> graphicsPlugin = CreateGraphicsPlugin(options, platformPlugin);
-
-            // Initialize the OpenXR program.
-            std::shared_ptr<IOpenXrProgram> program = CreateOpenXrProgram(options, platformPlugin, graphicsPlugin);
-
-            program->CreateInstance();
-            program->InitializeSystem();
-            program->InitializeSession();
-            program->CreateSwapchains();
-
-            while (!quitKeyPressed) {
-                bool exitRenderLoop = false;
-                program->PollEvents(&exitRenderLoop, &requestRestart);
-                if (exitRenderLoop) {
-                    break;
-                }
-
-                if (program->IsSessionRunning()) {
-                    program->PollActions();
-                    program->RenderFrame();
-                } else {
-                    // Throttle loop since xrWaitFrame won't be called.
-                    std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                }
-            }
-
-        } while (!quitKeyPressed && requestRestart);
-
-        return 0;
-    } catch (const std::exception& ex) {
-        Log::Write(Log::Level::Error, ex.what());
-        return 1;
-    } catch (...) {
-        Log::Write(Log::Level::Error, "Unknown Error");
-        return 1;
-    }
-}
-#endif

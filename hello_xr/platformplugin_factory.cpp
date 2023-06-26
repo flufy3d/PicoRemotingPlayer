@@ -8,8 +8,12 @@
 #define UNUSED_PARM(x) \
     { (void)(x); }
 
-// Implementation in platformplugin_win32.cpp
-std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Win32(const std::shared_ptr<Options>& options);
+
+std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Win32(const std::shared_ptr<Options>& options) {
+    // TODO: Implementation should go in its own cpp. Perhaps can share implementation with other
+    // window managers?
+    throw std::runtime_error("Win32 Platform Adapter Not Implemented");
+}
 
 std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Wayland(const std::shared_ptr<Options>& /*unused*/) {
     // TODO: Implementation should go in its own cpp. Perhaps can share implementation with other
@@ -17,7 +21,11 @@ std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Wayland(const std::shared_
     throw std::runtime_error("Wayland Platform Adapter Not Implemented");
 }
 
-std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Xlib(const std::shared_ptr<Options>&);
+std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Xlib(const std::shared_ptr<Options>&) {
+    // TODO: Implementation should go in its own cpp. Perhaps can share implementation with other
+    // window managers?
+    throw std::runtime_error("Xlib Platform Adapter Not Implemented");
+}
 
 std::shared_ptr<IPlatformPlugin> CreatePlatformPlugin_Xcb(const std::shared_ptr<Options>& /*unused*/) {
     // TODO: Implementation should go in its own cpp. Perhaps can share implementation with other
