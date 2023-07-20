@@ -40,10 +40,6 @@ std::map<std::string, GraphicsPluginFactory, IgnoreCaseStringLess> graphicsPlugi
 #ifdef XR_USE_GRAPHICS_API_VULKAN
     {"Vulkan",
      [](const std::shared_ptr<Options>& options, std::shared_ptr<IPlatformPlugin> platformPlugin) {
-         return CreateGraphicsPlugin_VulkanLegacy(options, std::move(platformPlugin));
-     }},
-    {"Vulkan2",
-     [](const std::shared_ptr<Options>& options, std::shared_ptr<IPlatformPlugin> platformPlugin) {
          return CreateGraphicsPlugin_Vulkan(options, std::move(platformPlugin));
      }},
 #endif
@@ -62,5 +58,10 @@ std::shared_ptr<IGraphicsPlugin> CreateGraphicsPlugin(const std::shared_ptr<Opti
         throw std::invalid_argument(Fmt("Unsupported graphics API '%s'", options->GraphicsPlugin.c_str()));
     }
 
+    // Log the current graphics API
+    Log::Write(Log::Level::Error, Fmt("SPK Current graphics API: %s", options->GraphicsPlugin.c_str()));
+
+
     return apiIt->second(options, std::move(platformPlugin));
+
 }
