@@ -39,7 +39,8 @@ bool UpdateOptionsFromSystemProperties(Options& options) {
     // Check for required parameters.
     if (options.GraphicsPlugin.empty()) {
         Log::Write(Log::Level::Warning, "GraphicsPlugin Default OpenGLES");
-        options.GraphicsPlugin = "OpenGLES";
+        //options.GraphicsPlugin = "OpenGLES";
+        options.GraphicsPlugin = "Vulkan";
     }
     return true;
 }
