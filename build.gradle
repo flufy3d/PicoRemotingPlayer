@@ -41,6 +41,59 @@ android {
 
     }
 
+
+    task compileShaders1(type: Exec) {
+
+        def ndkDir = android.ndkDirectory
+        if (ndkDir == null) {
+            throw new GradleException("Could not find Android NDK. Please set the ANDROID_NDK_HOME environment variable.")
+        }
+
+        commandLine "$ndkDir/shader-tools/windows-x86_64/glslc", '-o', 'hello_xr/vulkan_shaders', 'hello_xr/vulkan_shaders/*.glsl'
+    }
+
+    task compileShaders {
+        def ndkDir = android.ndkDirectory
+        if (ndkDir == null) {
+            throw new GradleException("Could not find Android NDK. Please set the ANDROID_NDK_HOME environment variable.")
+        }
+
+        // 获取所有的 GLSL 文件
+        def glslFiles = fileTree(dir: 'hello_xr/vulkan_shaders', include: '**/*.glsl')
+
+        // 对每个 GLSL 文件创建一个 Exec 任务
+        glslFiles.each { File file ->
+            def fileName = file.name
+            def shaderStage = fileName.startsWith('frag') ? 'fragment' : fileName.startsWith('vert') ? 'vertex' : null
+
+            // 如果文件名没有 'frag' 或 'vert' 前缀，跳过这个文件
+            if (shaderStage == null) {
+                println "Skipping file with unknown shader stage: $fileName"
+                return
+            }
+
+            // 获取当前操作系统平台
+            def osName = System.properties['os.name'].toLowerCase()
+            def platform = osName.contains('windows') ? 'windows-x86_64' : osName.contains('linux') ? 'linux-x86_64' : null
+
+            // 如果无法识别当前平台，抛出异常
+            if (platform == null) {
+                throw new GradleException("Unsupported platform: $osName")
+            }
+
+            // 创建一个 Exec 任务来编译这个 GLSL 文件
+            tasks.create(name: "compile${fileName.capitalize()}Shader", type: Exec) {
+                commandLine "$ndkDir/shader-tools/$platform/glslc", '-fshader-stage=' + shaderStage, '-c', '-mfmt=c', file.path, '-o', file.path.replace('.glsl', '.spv')
+            }
+
+            // 让 'compileShaders' 任务依赖于这个 Exec 任务
+            compileShaders.dependsOn tasks["compile${fileName.capitalize()}Shader"]
+        }
+    }
+
+    preBuild.dependsOn compileShaders
+
+
     buildTypes {
         release {
             minifyEnabled false
