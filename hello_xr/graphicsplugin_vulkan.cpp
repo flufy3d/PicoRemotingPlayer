@@ -12,9 +12,6 @@
 #include <common/xr_linear.h>
 #include <array>
 
-#ifdef USE_ONLINE_VULKAN_SHADERC
-#include <shaderc/shaderc.hpp>
-#endif
 
 #if defined(VK_USE_PLATFORM_WIN32_KHR)
 // Define USE_MIRROR_WINDOW to open a otherwise-unused window for e.g. RenderDoc
@@ -95,48 +92,6 @@ inline VkResult CheckVkResult(VkResult res, const char* originator = nullptr, co
 #define CHECK_VKCMD(cmd) CheckVkResult(cmd, #cmd, FILE_AND_LINE);
 #define CHECK_VKRESULT(res, cmdStr) CheckVkResult(res, cmdStr, FILE_AND_LINE);
 
-#ifdef USE_ONLINE_VULKAN_SHADERC
-constexpr char VertexShaderGlsl[] =
-    R"_(
-    #version 430
-    #extension GL_ARB_separate_shader_objects : enable
-
-    layout (std140, push_constant) uniform buf
-    {
-        mat4 mvp;
-    } ubuf;
-
-    layout (location = 0) in vec3 Position;
-    layout (location = 1) in vec3 Color;
-
-    layout (location = 0) out vec4 oColor;
-    out gl_PerVertex
-    {
-        vec4 gl_Position;
-    };
-
-    void main()
-    {
-        oColor.rgba  = Color.rgba;
-        gl_Position = ubuf.mvp * Position;
-    }
-)_";
-
-constexpr char FragmentShaderGlsl[] =
-    R"_(
-    #version 430
-    #extension GL_ARB_separate_shader_objects : enable
-
-    layout (location = 0) in vec4 oColor;
-
-    layout (location = 0) out vec4 FragColor;
-
-    void main()
-    {
-        FragColor = oColor;
-    }
-)_";
-#endif  // USE_ONLINE_VULKAN_SHADERC
 
 struct MemoryAllocator {
     void Init(VkPhysicalDevice physicalDevice, VkDevice device) {
@@ -1415,37 +1370,15 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
         m_graphicsBinding.queueIndex = 0;
     }
 
-#ifdef USE_ONLINE_VULKAN_SHADERC
-    // Compile a shader to a SPIR-V binary.
-    std::vector<uint32_t> CompileGlslShader(const std::string& name, shaderc_shader_kind kind, const std::string& source) {
-        shaderc::Compiler compiler;
-        shaderc::CompileOptions options;
-
-        options.SetOptimizationLevel(shaderc_optimization_level_size);
-
-        shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(source, kind, name.c_str(), options);
-
-        if (module.GetCompilationStatus() != shaderc_compilation_status_success) {
-            Log::Write(Log::Level::Error, Fmt("Shader %s compilation failed: %s", name.c_str(), module.GetErrorMessage().c_str()));
-            return std::vector<uint32_t>();
-        }
-
-        return {module.cbegin(), module.cend()};
-    }
-#endif
-
     void InitializeResources() {
-#ifdef USE_ONLINE_VULKAN_SHADERC
-        auto vertexSPIRV = CompileGlslShader("vertex", shaderc_glsl_default_vertex_shader, VertexShaderGlsl);
-        auto fragmentSPIRV = CompileGlslShader("fragment", shaderc_glsl_default_fragment_shader, FragmentShaderGlsl);
-#else
+
         std::vector<uint32_t> vertexSPIRV =
 #include "vulkan_shaders/vert.spv"
             ;
         std::vector<uint32_t> fragmentSPIRV =
 #include "vulkan_shaders/frag.spv"
             ;
-#endif
+
         if (vertexSPIRV.empty()) THROW("Failed to compile vertex shader");
         if (fragmentSPIRV.empty()) THROW("Failed to compile fragment shader");
 
