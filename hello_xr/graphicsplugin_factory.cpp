@@ -30,12 +30,6 @@ using GraphicsPluginFactory = std::function<std::shared_ptr<IGraphicsPlugin>(con
                                                                              std::shared_ptr<IPlatformPlugin> platformPlugin)>;
 
 std::map<std::string, GraphicsPluginFactory, IgnoreCaseStringLess> graphicsPluginMap = {
-#ifdef XR_USE_GRAPHICS_API_OPENGL_ES
-    {"OpenGLES",
-     [](const std::shared_ptr<Options>& options, std::shared_ptr<IPlatformPlugin> platformPlugin) {
-         return CreateGraphicsPlugin_OpenGLES(options, std::move(platformPlugin));
-     }},
-#endif
 
 #ifdef XR_USE_GRAPHICS_API_VULKAN
     {"Vulkan",
