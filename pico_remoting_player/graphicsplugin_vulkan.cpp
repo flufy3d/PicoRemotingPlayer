@@ -1042,9 +1042,9 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
         extensions.push_back("VK_EXT_debug_report");
 
         VkApplicationInfo appInfo{VK_STRUCTURE_TYPE_APPLICATION_INFO};
-        appInfo.pApplicationName = "hello_xr";
+        appInfo.pApplicationName = "pico_remoting_player";
         appInfo.applicationVersion = 1;
-        appInfo.pEngineName = "hello_xr";
+        appInfo.pEngineName = "pico_remoting_player";
         appInfo.engineVersion = 1;
         appInfo.apiVersion = VK_API_VERSION_1_0;
 

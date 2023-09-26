@@ -21,7 +21,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.3"
-    namespace 'com.khronos.hello_xr'
+    namespace 'com.spk.pico_remoting_player'
 
     defaultConfig {
         minSdkVersion 26
@@ -49,7 +49,7 @@ android {
             throw new GradleException("Could not find Android NDK. Please set the ANDROID_NDK_HOME environment variable.")
         }
 
-        commandLine "$ndkDir/shader-tools/windows-x86_64/glslc", '-o', 'hello_xr/vulkan_shaders', 'hello_xr/vulkan_shaders/*.glsl'
+        commandLine "$ndkDir/shader-tools/windows-x86_64/glslc", '-o', 'pico_remoting_player/vulkan_shaders', 'pico_remoting_player/vulkan_shaders/*.glsl'
     }
 
     task compileShaders {
@@ -59,7 +59,7 @@ android {
         }
 
         // 获取所有的 GLSL 文件
-        def glslFiles = fileTree(dir: 'hello_xr/vulkan_shaders', include: '**/*.glsl')
+        def glslFiles = fileTree(dir: 'pico_remoting_player/vulkan_shaders', include: '**/*.glsl')
 
         // 对每个 GLSL 文件创建一个 Exec 任务
         glslFiles.each { File file ->
@@ -103,10 +103,10 @@ android {
 	
     sourceSets {
         main {
-            java.srcDirs    = ['hello_xr/java']
-            jni.srcDirs     = ['hello_xr']
+            java.srcDirs    = ['pico_remoting_player/java']
+            jni.srcDirs     = ['pico_remoting_player']
             jniLibs.srcDirs = ['openxr_loader']
-            manifest.srcFile 'hello_xr/AndroidManifest.xml'
+            manifest.srcFile 'pico_remoting_player/AndroidManifest.xml'
         }
     }
 	

@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2020 The Khronos Group Inc
 //
 // SPDX-License-Identifier: Apache-2.0
-package com.khronos.hello_xr;
+package com.spk.pico_remoting_player;
 
 public class MainActivity extends android.app.NativeActivity {
   static {
@@ -10,6 +10,6 @@ public class MainActivity extends android.app.NativeActivity {
     // currently a way to specify a shared library dependency for NativeActivity
     // via the manifest meta-data.
     System.loadLibrary("openxr_loader");
-    System.loadLibrary("hello_xr");
+    System.loadLibrary("pico_remoting_player");
   }
 }

@@ -17,15 +17,15 @@ add_definitions(-DXR_USE_GRAPHICS_API_VULKAN)
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
 
 
-file(GLOB LOCAL_HEADERS  "hello_xr/*.h")
-file(GLOB LOCAL_SOURCE   "hello_xr/*.cpp")
-file(GLOB VULKAN_SHADERS "hello_xr/vulkan_shaders/*.glsl")
+file(GLOB LOCAL_HEADERS  "pico_remoting_player/*.h")
+file(GLOB LOCAL_SOURCE   "pico_remoting_player/*.cpp")
+file(GLOB VULKAN_SHADERS "pico_remoting_player/vulkan_shaders/*.glsl")
 
 LINK_DIRECTORIES(openxr_loader/${ANDROID_ABI})
 include_directories(openxr_loader/include)
 
 add_library( # Sets the name of the library.
-        hello_xr
+        pico_remoting_player
 		SHARED
         ${LOCAL_SOURCE}
         ${LOCAL_HEADERS}
@@ -38,14 +38,14 @@ source_group("Shaders" FILES ${VULKAN_SHADERS})
 
 
 if(VulkanHeaders_INCLUDE_DIRS)
-    target_include_directories(hello_xr
+    target_include_directories(pico_remoting_player
             PRIVATE
             ${VulkanHeaders_INCLUDE_DIRS}
             )
 endif()
 
 if(Vulkan_LIBRARY)
-    target_link_libraries(hello_xr ${Vulkan_LIBRARY})
+    target_link_libraries(pico_remoting_player ${Vulkan_LIBRARY})
 endif()
 
 # Specifies libraries CMake should link to your target library. You
@@ -53,7 +53,7 @@ endif()
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       hello_xr
+                       pico_remoting_player
                        openxr_loader
                        android
                        vulkan
