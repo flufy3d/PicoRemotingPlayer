@@ -107,6 +107,7 @@ android {
             jni.srcDirs     = ['pico_remoting_player']
             jniLibs.srcDirs = ['openxr_loader']
             manifest.srcFile 'pico_remoting_player/AndroidManifest.xml'
+            assets.srcDirs  = ['pico_remoting_player/assets'] 
         }
     }
 	

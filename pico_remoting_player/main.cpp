@@ -186,6 +186,35 @@ void android_main(struct android_app* app) {
         bool requestRestart = false;
         bool exitRenderLoop = false;
 
+        //Load Image
+        AAssetManager* assetManager = app->activity->assetManager;
+        AAsset* asset = AAssetManager_open(assetManager, "left_adjusted.png", AASSET_MODE_BUFFER);
+
+        if (asset == nullptr) {
+
+            Log::Write(Log::Level::Error,
+                       Fmt("AAssetManager_open failed"));
+
+            return;
+        }
+
+        // 获取图片大小（字节）
+        off_t length = AAsset_getLength(asset);
+
+        Log::Write(Log::Level::Error,
+                   Fmt("left_adjusted.png length=%ld", length));
+
+        // 分配内存空间并读取文件
+        char* buffer = new char[length];
+        AAsset_read(asset, buffer, length);
+
+        // 此时，buffer中就包含了图片的数据，你可以用任何图像处理库来处理它
+        // ...
+
+        // 释放资源
+        AAsset_close(asset);
+        delete[] buffer;
+
         // Create platform-specific implementation.
         std::shared_ptr<IPlatformPlugin> platformPlugin = CreatePlatformPlugin(options, data);
         // Create graphics API implementation.
