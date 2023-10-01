@@ -8,8 +8,9 @@
 #include <sstream>
 
 #if defined(ANDROID)
-#define ALOGE(...) __android_log_print(ANDROID_LOG_ERROR, "pico_remoting_player", __VA_ARGS__)
-#define ALOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, "pico_remoting_player", __VA_ARGS__)
+#define ALOGE(...) __android_log_print(ANDROID_LOG_ERROR, "PRPlayer", __VA_ARGS__)
+#define ALOGI(...) __android_log_print(ANDROID_LOG_INFO, "PRPlayer", __VA_ARGS__)
+#define ALOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, "PRPlayer", __VA_ARGS__)
 #endif
 
 namespace {
@@ -47,11 +48,22 @@ void Write(Level severity, const std::string& msg) {
     std::lock_guard<std::mutex> lock(g_logLock);  // Ensure output is serialized
     ((severity == Level::Error) ? std::clog : std::cout) << out.str();
 
-#if defined(ANDROID)
-    if (severity == Level::Error)
-        ALOGE("%s", out.str().c_str());
-    else
-        ALOGV("%s", out.str().c_str());
-#endif
+    // 根据严重级别使用不同的日志函数
+    switch (severity) {
+        case Level::Error:
+            ALOGE("%s", out.str().c_str());
+            break;
+        case Level::Warning:
+            ALOGI("%s", out.str().c_str());
+            break;
+        case Level::Info:
+            ALOGI("%s", out.str().c_str());
+            break;
+        case Level::Verbose:
+        default:
+            ALOGI("%s", out.str().c_str());
+            break;
+    }
+
 }
 }  // namespace Log

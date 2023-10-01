@@ -52,9 +52,6 @@ std::shared_ptr<IGraphicsPlugin> CreateGraphicsPlugin(const std::shared_ptr<Opti
         throw std::invalid_argument(Fmt("Unsupported graphics API '%s'", options->GraphicsPlugin.c_str()));
     }
 
-    // Log the current graphics API
-    Log::Write(Log::Level::Error, Fmt("SPK Current graphics API: %s", options->GraphicsPlugin.c_str()));
-
 
     return apiIt->second(options, std::move(platformPlugin));
 
