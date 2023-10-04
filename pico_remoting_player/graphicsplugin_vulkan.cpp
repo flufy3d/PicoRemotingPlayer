@@ -6,6 +6,7 @@
 #include "common.h"
 #include "geometry.h"
 #include "graphicsplugin.h"
+#include "my_asset_manager.h"
 
 #ifdef XR_USE_GRAPHICS_API_VULKAN
 
@@ -1137,6 +1138,8 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
     }
 
     void InitializeResources() {
+        AssetData assetData = MyAssetManager::Instance().LoadAsset("left_adjusted.png");
+        Log::Write(Log::Level::Info, Fmt("Loaded left_adjusted.png :%d", assetData.length));
 
         std::vector<uint32_t> vertexSPIRV =
 #include "vulkan_shaders/vert.spv"

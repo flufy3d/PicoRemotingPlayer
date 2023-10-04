@@ -9,95 +9,35 @@
 #include "platformplugin.h"
 #include "graphicsplugin.h"
 #include "openxr_program.h"
+#include "my_asset_manager.h"
 
 
 
 namespace {
 
-#ifdef XR_USE_PLATFORM_ANDROID
-void ShowHelp() {
-    Log::Write(Log::Level::Info, "adb shell setprop debug.xr.graphicsPlugin OpenGLES|Vulkan");
-    Log::Write(Log::Level::Info, "adb shell setprop debug.xr.formFactor Hmd|Handheld");
-    Log::Write(Log::Level::Info, "adb shell setprop debug.xr.viewConfiguration Stereo|Mono");
-    Log::Write(Log::Level::Info, "adb shell setprop debug.xr.blendMode Opaque|Additive|AlphaBlend");
-}
 
-bool UpdateOptionsFromSystemProperties(Options& options) {
-    char value[PROP_VALUE_MAX] = {};
-    if (__system_property_get("debug.xr.graphicsPlugin", value) != 0) {
-        options.GraphicsPlugin = value;
+    void ShowHelp() {
+        Log::Write(Log::Level::Info, "adb shell setprop debug.xr.graphicsPlugin Vulkan");
+        Log::Write(Log::Level::Info, "adb shell setprop debug.xr.formFactor Hmd|Handheld");
+        Log::Write(Log::Level::Info, "adb shell setprop debug.xr.viewConfiguration Stereo|Mono");
+        Log::Write(Log::Level::Info, "adb shell setprop debug.xr.blendMode Opaque|Additive|AlphaBlend");
     }
 
-    // Check for required parameters.
-    if (options.GraphicsPlugin.empty()) {
-        Log::Write(Log::Level::Warning, "GraphicsPlugin Default Vulkan");
-        options.GraphicsPlugin = "Vulkan";
-    }
-    return true;
-}
-#else
-void ShowHelp() {
-    // TODO: Improve/update when things are more settled.
-    Log::Write(Log::Level::Info,
-               "HelloXr --graphics|-g <Graphics API> [--formfactor|-ff <Form factor>] [--viewconfig|-vc <View config>] "
-               "[--blendmode|-bm <Blend mode>] [--space|-s <Space>] [--verbose|-v]");
-    Log::Write(Log::Level::Info, "Graphics APIs:            D3D11, D3D12, OpenGLES, OpenGL, Vulkan2, Vulkan");
-    Log::Write(Log::Level::Info, "Form factors:             Hmd, Handheld");
-    Log::Write(Log::Level::Info, "View configurations:      Mono, Stereo");
-    Log::Write(Log::Level::Info, "Environment blend modes:  Opaque, Additive, AlphaBlend");
-    Log::Write(Log::Level::Info, "Spaces:                   View, Local, Stage");
-}
-
-bool UpdateOptionsFromCommandLine(Options& options, int argc, char* argv[]) {
-    int i = 1;  // Index 0 is the program name and is skipped.
-
-    auto getNextArg = [&] {
-        if (i >= argc) {
-            throw std::invalid_argument("Argument parameter missing");
+    bool UpdateOptionsFromSystemProperties(Options& options) {
+        char value[PROP_VALUE_MAX] = {};
+        if (__system_property_get("debug.xr.graphicsPlugin", value) != 0) {
+            options.GraphicsPlugin = value;
         }
 
-        return std::string(argv[i++]);
-    };
-
-    while (i < argc) {
-        const std::string arg = getNextArg();
-        if (EqualsIgnoreCase(arg, "--graphics") || EqualsIgnoreCase(arg, "-g")) {
-            options.GraphicsPlugin = getNextArg();
-        } else if (EqualsIgnoreCase(arg, "--formfactor") || EqualsIgnoreCase(arg, "-ff")) {
-            options.FormFactor = getNextArg();
-        } else if (EqualsIgnoreCase(arg, "--viewconfig") || EqualsIgnoreCase(arg, "-vc")) {
-            options.ViewConfiguration = getNextArg();
-        } else if (EqualsIgnoreCase(arg, "--blendmode") || EqualsIgnoreCase(arg, "-bm")) {
-            options.EnvironmentBlendMode = getNextArg();
-        } else if (EqualsIgnoreCase(arg, "--space") || EqualsIgnoreCase(arg, "-s")) {
-            options.AppSpace = getNextArg();
-        } else if (EqualsIgnoreCase(arg, "--verbose") || EqualsIgnoreCase(arg, "-v")) {
-            Log::SetLevel(Log::Level::Verbose);
-        } else if (EqualsIgnoreCase(arg, "--help") || EqualsIgnoreCase(arg, "-h")) {
-            ShowHelp();
-            return false;
-        } else {
-            throw std::invalid_argument(Fmt("Unknown argument: %s", arg.c_str()));
+        // Check for required parameters.
+        if (options.GraphicsPlugin.empty()) {
+            Log::Write(Log::Level::Warning, "GraphicsPlugin Default Vulkan");
+            options.GraphicsPlugin = "Vulkan";
         }
+        return true;
     }
 
-    // Check for required parameters.
-    if (options.GraphicsPlugin.empty()) {
-        Log::Write(Log::Level::Error, "GraphicsPlugin parameter is required");
-        ShowHelp();
-        return false;
-    }
 
-    try {
-        options.ParseStrings();
-    } catch (std::invalid_argument& ia) {
-        Log::Write(Log::Level::Error, ia.what());
-        ShowHelp();
-        return false;
-    }
-    return true;
-}
-#endif
 }  // namespace
 
 
@@ -186,35 +126,9 @@ void android_main(struct android_app* app) {
         bool requestRestart = false;
         bool exitRenderLoop = false;
 
-        //Load Image
-        AAssetManager* assetManager = app->activity->assetManager;
-        AAsset* asset = AAssetManager_open(assetManager, "left_adjusted.png", AASSET_MODE_BUFFER);
-
-        if (asset == nullptr) {
-
-            Log::Write(Log::Level::Error,
-                       Fmt("AAssetManager_open failed"));
-
-            return;
-        }
-
-        // 获取图片大小（字节）
-        off_t length = AAsset_getLength(asset);
-
-        Log::Write(Log::Level::Error,
-                   Fmt("left_adjusted.png length=%ld", length));
-
-        // 分配内存空间并读取文件
-        char* buffer = new char[length];
-        AAsset_read(asset, buffer, length);
-
-        // 此时，buffer中就包含了图片的数据，你可以用任何图像处理库来处理它
-        // ...
-
-        // 释放资源
-        AAsset_close(asset);
-        delete[] buffer;
-
+        //Initialize MyAssetManager
+        MyAssetManager::Instance().Initialize(app);
+        
         // Create platform-specific implementation.
         std::shared_ptr<IPlatformPlugin> platformPlugin = CreatePlatformPlugin(options, data);
         // Create graphics API implementation.

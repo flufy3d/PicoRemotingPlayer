@@ -3,7 +3,7 @@
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.10.2)
 
 # build native_app_glue as a static lib
 set(APP_GLUE_DIR ${ANDROID_NDK}/sources/android/native_app_glue)

@@ -11,11 +11,6 @@
 #include "graphicsplugin.h"
 
 // Graphics API factories are forward declared here.
-#ifdef XR_USE_GRAPHICS_API_OPENGL_ES
-std::shared_ptr<IGraphicsPlugin> CreateGraphicsPlugin_OpenGLES(const std::shared_ptr<Options>& options,
-                                                               std::shared_ptr<IPlatformPlugin> platformPlugin);
-#endif
-
 #ifdef XR_USE_GRAPHICS_API_VULKAN
 std::shared_ptr<IGraphicsPlugin> CreateGraphicsPlugin_VulkanLegacy(const std::shared_ptr<Options>& options,
                                                                    std::shared_ptr<IPlatformPlugin> platformPlugin);

@@ -1,0 +1,480 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"else",
+				"elseif"
+			],
+			[
+				"har",
+				"hardware_data"
+			],
+			[
+				"bu",
+				"button"
+			],
+			[
+				"res",
+				"response"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ssC",
+				"Set Syntax: C#"
+			],
+			[
+				"ss cmak",
+				"Set Syntax: CMake"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ss bash",
+				"Set Syntax: Bash"
+			],
+			[
+				"ss uni",
+				"Set Syntax: UnityShader"
+			],
+			[
+				"ssp",
+				"Set Syntax: Python"
+			],
+			[
+				"cuda",
+				"Set Syntax: CUDA C++"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer"
+	],
+	"file_history":
+	[
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/CMakeLists.txt",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp28018/home/dev/projects/RenderStreamKube/deployments/deployment.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp28299/home/dev/projects/RenderStreamKube/scripts/build_image.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp28861/home/dev/projects/RenderStreamKube/pods/render-stream-hub-pod.yaml",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/build.gradle",
+		"/D/Projects/VulkanTutorial/code/31_shader_compute.vert",
+		"/D/Projects/VulkanTutorial/code/31_shader_compute.comp",
+		"/D/Projects/VulkanTutorial/code/31_shader_compute.frag",
+		"/D/Projects/VulkanTutorial/code/22_shader_ubo.vert",
+		"/D/Projects/VulkanTutorial/code/CMakeLists.txt",
+		"/D/Projects/VulkanTutorial/code/22_shader_ubo.frag",
+		"/D/Projects/VulkanTutorial/code/27_shader_depth.vert",
+		"/D/Projects/VulkanTutorial/code/27_shader_depth.frag",
+		"/D/Projects/VulkanTutorial/code/18_shader_vertexbuffer.frag",
+		"/D/Projects/VulkanTutorial/code/18_shader_vertexbuffer.vert",
+		"/D/Projects/VulkanTutorial/code/09_shader_base.vert",
+		"/D/Projects/VulkanTutorial/code/09_shader_base.frag",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/.gitignore",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/pico_remoting_player/graphicsplugin_vulkan.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/pico_remoting_player/graphicsplugin_factory.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/pico_remoting_player/openxr_program.cpp",
+		"/C/Users/flufy3d/Downloads/openxr_program_impl.cpp",
+		"/C/Users/flufy3d/Downloads/vulkan_helpers.cpp",
+		"/C/Users/flufy3d/Downloads/vulkan_plugin_impl.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/settings.gradle",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/AndroidManifest.xml",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/graphicsplugin_vulkan.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/logger.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/java/com/khronos/hello_xr/MainActivity.java",
+		"/D/Projects/VulkanTutorial/code/.gitignore",
+		"/C/Users/flufy3d/Downloads/modified_graphicsplugin.h",
+		"/C/Users/flufy3d/Downloads/modified_graphicsplugin_vulkan.cpp",
+		"/C/Users/flufy3d/Downloads/updated_graphicsplugin_vulkan.cpp",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp02762/home/dev/projects/RenderStreamKube/deployments/deployment.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp42274/home/dev/projects/RenderStreamKube/build/controller/api/api.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp58514/home/dev/projects/RenderStreamKube/services/service.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp42235/home/dev/projects/RenderStreamKube/build/controller/main.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp11009/home/dev/projects/RenderStreamKube/pods/render-stream-hub-pod.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp11474/home/dev/projects/RenderStreamKube/scripts/build_image.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp59496/home/dev/projects/RenderStreamKube/scripts/setup_accounts.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp11284/home/dev/projects/RenderStreamKube/scripts/manage_metallb.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp39205/home/dev/projects/RenderStreamKube/scripts/create_configmap.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp30747/home/dev/projects/RenderStreamKube/deployments/deployment-static.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp30082/home/dev/projects/RenderStreamKube/services/service-static.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp07461/home/dev/projects/RenderStreamKube/build/controller/Dockerfile",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp59089/home/dev/projects/RenderStreamKube/accounts/my-admin-sa",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp03200/home/dev/projects/RenderStreamKube/build/controller/config/config.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp42725/home/dev/projects/RenderStreamKube/configmaps/pod-definition-configmap.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp19029/home/dev/projects/RenderStreamKube/scripts/create_secret.sh",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp45965/home/dev/projects/RenderStreamKube/pods/render-stream-hub-pod.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp30001/home/dev/projects/RenderStreamKube/build/webserver/client/public/receiver/index.html",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp14196/home/dev/projects/RenderStreamKube/build/webserver/client/public/receiver/js/main.js",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp17274/home/dev/projects/RenderStreamKube/pods/render-stream-hub-pod.yaml",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp13413/home/dev/projects/RenderStreamKube/build/controller/main.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp36754/home/dev/projects/RenderStreamKube/build/controller/ws/hub.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp07202/home/dev/projects/RenderStreamKube/build/webserver/client/public/js/config.js",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp05274/home/dev/projects/RenderStreamKube/build/controller/api/api.go",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp30542/home/dev/projects/RenderStreamKube/build/webserver/client/public/receiver/css/style.css",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp10623/home/dev/projects/RenderStreamKube/build/webserver/client/public/index.html",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp03589/etc/nginx/sites-available/bitsea",
+		"/C/Users/flufy3d/AppData/Local/Temp/scp21573/home/dev/projects/RenderStreamKube/build/controller/README.md",
+		"/C/Users/flufy3d/AppData/Local/Programs/WinSCP/Text",
+		"/C/Users/flufy3d/AppData/Local/Programs/WinSCP/Files/Sublime",
+		"/C/Users/flufy3d/Downloads/components.yaml",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/vulkan_shaders/frag.spv",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/.gitattributes",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/main.cpp",
+		"/C/Users/flufy3d/Desktop/run.log",
+		"/C/Users/flufy3d/Documents/GitHub/TestNative/app/src/main/cpp/native-lib.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/TestNative/app/src/main/java/com/example/myapplication/MainActivity.kt",
+		"/C/Users/flufy3d/Desktop/debug.log",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/local.properties",
+		"/C/Users/flufy3d/Documents/GitHub/EndlessTunnel/gradle/wrapper/gradle-wrapper.properties",
+		"/D/Projects/endless-tunnel/endless-tunnel/endless-tunnel.vcxproj",
+		"/C/Users/flufy3d/Documents/GitHub/MIGPT/MIGPT.py",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/build/outputs/apk/debug/output-metadata.json",
+		"/C/Users/flufy3d/Documents/GitHub/PicoRemotingPlayer/hello_xr/openxr_program.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/HelloXR/build.gradle",
+		"/C/Users/flufy3d/Documents/GitHub/HelloXR/gradle/wrapper/gradle-wrapper.properties",
+		"/D/Projects/PicoStart/Plugins/PICOLivePreview/Source/ThirdParty/Libs/Include/streamingDriverInterface/streaming_driver_interface.h",
+		"/D/Projects/PicoStart/PicoStart.uproject",
+		"/D/Projects/PicoStart/Plugins/PICOLivePreview/Source/ThirdParty/Libs/Include/pxr_base/stream/video_stream.h",
+		"/D/Projects/PicoStart/Plugins/PICOLivePreview/Source/PICOXRDPEditor/Private/PXR_DPEditor.cpp",
+		"/D/Projects/PicoStart/Plugins/PICOLivePreview/Source/PICOXRDPHMD/Private/PXR_DPManager.cpp",
+		"/D/Projects/PicoStart/Intermediate/Android/arm64/gradle/gradle.properties",
+		"/D/Projects/PicoStart/Intermediate/Android/arm64/gradle/gradle/wrapper/gradle-wrapper.properties",
+		"/D/Projects/PicoStart/Intermediate/Android/arm64/gradle/gradlew.bat",
+		"/D/Projects/PicoStart/Intermediate/Android/arm64/gradle/local.properties",
+		"/C/Users/flufy3d/Documents/Unreal Projects/TestMetaHuman/TestMetaHuman.uproject",
+		"/D/Projects/PicoStart 5.1 - 2/PicoStart.uproject",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/UnrealHitchParser/UnrealHitchParser.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/UnrealGameSync/PostBadgeStatus/PostBadgeStatus.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/PrereqInstaller/CustomAction/CustomAction.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/ImageValidator/ImageValidator.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithSolidworksExporter/RegistryKeyExistsCustomAction/RegistryKeyExistsCustomAction.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithSolidworksExporter/PreprocessWxs/PreprocessWxs.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithSolidworksExporter/DatasmithSolidworks/DatasmithSolidworks.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithRhinoExporter/DatasmithRhino7/DatasmithRhino7.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithRhinoExporter/DatasmithRhino6/DatasmithRhino6.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/Enterprise/Datasmith/DatasmithRevitExporter/Resources/DatasmithRevitResources.csproj",
+		"/D/Projects/UnrealEngine/Engine/Source/Programs/NetworkProfiler/NetworkProfiler/NetworkProfiler.csproj",
+		"/D/Projects/UnrealEngine/Engine/Saved/CsTools/Engine/Source/Programs/NetworkProfiler/NetworkProfiler/NetworkProfiler.csproj",
+		"/D/Projects/UnrealEngine/Engine/Build/InstalledEngineBuild.xml",
+		"/D/Projects/UnrealEngine/Engine/Intermediate/Build/Win64/UnrealEditor/Development/WorldBrowser/UnrealEditor-WorldBrowser.lib.response",
+		"/C/Users/flufy3d/.condarc",
+		"/D/Projects/UnrealEngine/Engine/Source/ThirdParty/Android/package.xml",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/.gitignore",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/Engine/Programs/UnrealBuildTool/Log_GPF.txt",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/Engine/Source/Programs/UnrealBuildTool/Platform/Windows/VCToolChain.cs",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/Engine/Plugins/Runtime/Database/ADOSupport/Source/ADOSupport/Private/ADOSupport.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/Engine/Intermediate/Build/Win64/UnrealEditor/Development/VisualStudioDTE/dte80a.cpp",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/Engine/Extras/Android/SetupAndroid.bat",
+		"/C/Users/flufy3d/Documents/GitHub/UnrealEngine/cpp.hint",
+		"/C/Users/flufy3d/Documents/GitHub/Teapot/README.md",
+		"/C/Users/flufy3d/Documents/GitHub/Hologram/.gitignore",
+		"/C/Users/flufy3d/Documents/GitHub/Hologram/Assets/Hologram/HologramRenderer.shader",
+		"/C/Users/flufy3d/Documents/GitHub/Hologram/Assets/Hologram/hologramRendererGL.shader",
+		"/C/Users/flufy3d/Documents/GitHub/Hologram/Assets/Hologram/Common.cginc",
+		"/C/Users/flufy3d/Documents/GitHub/Hologram/Assets/Hologram/HologramRendererTessellation.shader",
+		"/C/Users/flufy3d/Documents/GitHub/oobabooga_windows/update_windows.bat",
+		"/C/Users/flufy3d/Documents/GitHub/PicoStart/Packages/manifest.json",
+		"/C/Users/flufy3d/Desktop/style.css",
+		"/C/Users/flufy3d/Desktop/script.js",
+		"/C/Users/flufy3d/Documents/GitHub/oobabooga_windows/webui.py",
+		"/C/Users/flufy3d/Desktop/index.html",
+		"/C/Users/flufy3d/Documents/GitHub/oobabooga_windows/start_windows.bat",
+		"/C/Users/flufy3d/Documents/GitHub/oobabooga_windows/text-generation-webui/models/config.yaml",
+		"/C/Users/flufy3d/Documents/GitHub/oobabooga_windows/text-generation-webui/models/config-user.yaml"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 128.0,
+		"where_history":
+		[
+			"C:\\Users\\flufy3d\\Documents\\GitHub\\PicoRemotingPlayer",
+			"C:\\Users\\flufy3d\\Documents\\GitHub\\HelloXR",
+			"",
+			"D:\\Projects\\UnrealEngine\\Engine\\Source\\Programs"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"InputRemoting",
+			"class",
+			"actionEvent",
+			"performed ",
+			"InitializeActions",
+			"System Properties: Name",
+			"System Graphics Properties",
+			"add_shaders_target",
+			"add_chapter",
+			"VK_EXT",
+			"Extension name",
+			"extens",
+			"extension",
+			"add_shaders_target",
+			"CHAPTER_SHADER",
+			"add_chapter",
+			"CHECK_XRCMD",
+			"CreateVulkanInstanceKHR",
+			"CreateVulkanDeviceKHR",
+			"GetVulkanGraphicsDevice2KHR",
+			"GetVulkanGraphicsRequirements2KHR",
+			"createvulkan",
+			"m_instance",
+			"m_instance =",
+			"m_instance",
+			"m_instance ",
+			"m_instance = ",
+			"m_instance =",
+			"m_instance",
+			"InitializeDevice",
+			"CreateVulkanInstanceKHR",
+			"device",
+			"createin",
+			"vk",
+			"vkCreateInstance",
+			"hello_xr",
+			"com.khronos.hello_xr",
+			"hello_xr",
+			"EGL",
+			"gle",
+			"gl",
+			"gles",
+			"STB_INCLUDEDIR",
+			"LIBS",
+			"tinyobjloader",
+			"STB_INCLUDEDIR",
+			"include",
+			"SHADER",
+			"Port",
+			"render-stream-hub",
+			"s",
+			"pod",
+			"message",
+			"SP",
+			"SPK",
+			"LOGI",
+			"SPK",
+			"SP",
+			"SPK",
+			"Current graph",
+			"VULKAN_SHADERS",
+			"device_id",
+			"do_tts",
+			"帮我",
+			"get_latest_ask_from_xiaoai",
+			"run_forever",
+			"tts_command",
+			"HARDWARE_COMMAND_DICT",
+			"x08c",
+			"get_latest_ask_from_xiaoai",
+			"_init_first_data_and_chatbot",
+			"_init_cookie",
+			"check_new_query",
+			"init_all_data",
+			"_init_cookie",
+			"login_miboy",
+			"HARDWARE_COMMAND_DICT",
+			"红米小爱触屏音箱Pro",
+			"SOUND_TYPE",
+			"compile_glsl",
+			"HelloXR",
+			"Hello",
+			"com.android.tools.build:gradle",
+			"base-extension",
+			"prepareKotlinBuildScriptModel",
+			"SubmitLayerImage",
+			"StreamingDriverInterfacePtr =",
+			"StreamingDriverInterfacePtr",
+			"ConnectStreamingServer",
+			"<TargetFrameworkVersion>v4",
+			"v4",
+			"4.5",
+			".net",
+			"DefaultWithLinuxArm64",
+			"HostPlatformOnly",
+			"DefaultWithPlatform",
+			"WithAndroid",
+			"HostPlatformOnly",
+			"AllPlatforms",
+			"WithLinuxArm",
+			"GameConfigurations",
+			"Binaries",
+			"content",
+			"Content",
+			"Content/Editor",
+			"Content\\Editor",
+			"Content",
+			".json",
+			"AddCodeToProjectTutorial.json",
+			"Automation",
+			"DotNET/UnrealBuildTool",
+			"UnrealBuildTool",
+			"json",
+			"xml",
+			"error",
+			"wd4800",
+			"AppData",
+			"Local/Android",
+			"AppData\\Local\\Android\\Sdk",
+			"NDK",
+			"Android",
+			"error",
+			"backgroundColor",
+			"myFunction",
+			"changeBackgroundColor",
+			"regin",
+			"generate_prompt",
+			"sample_data"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"pico_remoting_player",
+			"com.spk.pico_remoting_player"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "PicoRemotingPlayer.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 284.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
