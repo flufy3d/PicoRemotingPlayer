@@ -1,5 +1,8 @@
 #pragma once
 
+#include "pch.h"
+#include "common.h"
+
 static std::string vkResultString(VkResult res) {
     switch (res) {
         case VK_SUCCESS:

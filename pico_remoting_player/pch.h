@@ -28,6 +28,9 @@
 #include <time.h>
 #include <string.h>
 
+#include <common/xr_linear.h>
+#include <array>
+
 //
 // Platform Headers
 //

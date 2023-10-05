@@ -9,9 +9,7 @@
 #include "platformplugin.h"
 #include "graphicsplugin.h"
 #include "openxr_program.h"
-#include <common/xr_linear.h>
-#include <array>
-#include <cmath>
+
 
 namespace {
 
