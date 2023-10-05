@@ -18,8 +18,11 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_o
 
 
 file(GLOB LOCAL_HEADERS  "pico_remoting_player/*.h")
-file(GLOB LOCAL_SOURCE   "pico_remoting_player/*.cpp")
-file(GLOB RENDER_SOURCE  "pico_remoting_player/render/*.cpp")
+
+file(GLOB LOCAL_SOURCE
+     "pico_remoting_player/*.cpp"
+     "pico_remoting_player/render/*.cpp"
+)
 file(GLOB VULKAN_SHADERS "pico_remoting_player/vulkan_shaders/*.glsl")
 
 LINK_DIRECTORIES(openxr_loader/${ANDROID_ABI})
@@ -33,7 +36,6 @@ add_library( # Sets the name of the library.
 		SHARED
         ${LOCAL_SOURCE}
         ${LOCAL_HEADERS}
-        ${RENDER_SOURCE}
 		${VULKAN_SHADERS}
         openxr_loader/include/common/gfxwrapper_opengl.c
 		)
