@@ -10,6 +10,8 @@
 #include "render/vulkan_helpers.h"
 #include "render/memory_allocator.h"
 #include "render/cmd_buffer.h"
+#include "render/shader_program.h"
+#include "render/vertexbuffer_base.h"
 
 #ifdef XR_USE_GRAPHICS_API_VULKAN
 
@@ -17,131 +19,7 @@
 namespace {
 
 
-// ShaderProgram to hold a pair of vertex & fragment shaders
-struct ShaderProgram {
-    std::array<VkPipelineShaderStageCreateInfo, 2> shaderInfo{
-        {{VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO}, {VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO}}};
 
-    ShaderProgram() = default;
-
-    ~ShaderProgram() {
-        if (m_vkDevice != nullptr) {
-            for (auto& si : shaderInfo) {
-                if (si.module != VK_NULL_HANDLE) {
-                    vkDestroyShaderModule(m_vkDevice, shaderInfo[0].module, nullptr);
-                }
-                si.module = VK_NULL_HANDLE;
-            }
-        }
-        shaderInfo = {};
-        m_vkDevice = nullptr;
-    }
-
-    ShaderProgram(const ShaderProgram&) = delete;
-    ShaderProgram& operator=(const ShaderProgram&) = delete;
-    ShaderProgram(ShaderProgram&&) = delete;
-    ShaderProgram& operator=(ShaderProgram&&) = delete;
-
-    void LoadVertexShader(const std::vector<uint32_t>& code) { Load(0, code); }
-
-    void LoadFragmentShader(const std::vector<uint32_t>& code) { Load(1, code); }
-
-    void Init(VkDevice device) { m_vkDevice = device; }
-
-   private:
-    VkDevice m_vkDevice{VK_NULL_HANDLE};
-
-    void Load(uint32_t index, const std::vector<uint32_t>& code) {
-        VkShaderModuleCreateInfo modInfo{VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO};
-
-        auto& si = shaderInfo[index];
-        si.pName = "main";
-        std::string name;
-
-        switch (index) {
-            case 0:
-                si.stage = VK_SHADER_STAGE_VERTEX_BIT;
-                name = "vertex";
-                break;
-            case 1:
-                si.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-                name = "fragment";
-                break;
-            default:
-                THROW(Fmt("Unknown code index %d", index));
-        }
-
-        modInfo.codeSize = code.size() * sizeof(code[0]);
-        modInfo.pCode = &code[0];
-        CHECK_MSG((modInfo.codeSize > 0) && modInfo.pCode, Fmt("Invalid %s shader ", name.c_str()));
-
-        CHECK_VKCMD(vkCreateShaderModule(m_vkDevice, &modInfo, nullptr, &si.module));
-
-        Log::Write(Log::Level::Info, Fmt("Loaded %s shader", name.c_str()));
-    }
-};
-
-// VertexBuffer base class
-struct VertexBufferBase {
-    VkBuffer idxBuf{VK_NULL_HANDLE};
-    VkDeviceMemory idxMem{VK_NULL_HANDLE};
-    VkBuffer vtxBuf{VK_NULL_HANDLE};
-    VkDeviceMemory vtxMem{VK_NULL_HANDLE};
-    VkVertexInputBindingDescription bindDesc{};
-    std::vector<VkVertexInputAttributeDescription> attrDesc{};
-    struct {
-        uint32_t idx;
-        uint32_t vtx;
-    } count = {0, 0};
-
-    VertexBufferBase() = default;
-
-    ~VertexBufferBase() {
-        if (m_vkDevice != nullptr) {
-            if (idxBuf != VK_NULL_HANDLE) {
-                vkDestroyBuffer(m_vkDevice, idxBuf, nullptr);
-            }
-            if (idxMem != VK_NULL_HANDLE) {
-                vkFreeMemory(m_vkDevice, idxMem, nullptr);
-            }
-            if (vtxBuf != VK_NULL_HANDLE) {
-                vkDestroyBuffer(m_vkDevice, vtxBuf, nullptr);
-            }
-            if (vtxMem != VK_NULL_HANDLE) {
-                vkFreeMemory(m_vkDevice, vtxMem, nullptr);
-            }
-        }
-        idxBuf = VK_NULL_HANDLE;
-        idxMem = VK_NULL_HANDLE;
-        vtxBuf = VK_NULL_HANDLE;
-        vtxMem = VK_NULL_HANDLE;
-        bindDesc = {};
-        attrDesc.clear();
-        count = {0, 0};
-        m_vkDevice = nullptr;
-    }
-
-    VertexBufferBase(const VertexBufferBase&) = delete;
-    VertexBufferBase& operator=(const VertexBufferBase&) = delete;
-    VertexBufferBase(VertexBufferBase&&) = delete;
-    VertexBufferBase& operator=(VertexBufferBase&&) = delete;
-    void Init(VkDevice device, const MemoryAllocator* memAllocator, const std::vector<VkVertexInputAttributeDescription>& attr) {
-        m_vkDevice = device;
-        m_memAllocator = memAllocator;
-        attrDesc = attr;
-    }
-
-   protected:
-    VkDevice m_vkDevice{VK_NULL_HANDLE};
-    void AllocateBufferMemory(VkBuffer buf, VkDeviceMemory* mem) const {
-        VkMemoryRequirements memReq = {};
-        vkGetBufferMemoryRequirements(m_vkDevice, buf, &memReq);
-        m_memAllocator->Allocate(memReq, mem);
-    }
-
-   private:
-    const MemoryAllocator* m_memAllocator{nullptr};
-};
 
 // VertexBuffer template to wrap the indices and vertices
 template <typename T>
