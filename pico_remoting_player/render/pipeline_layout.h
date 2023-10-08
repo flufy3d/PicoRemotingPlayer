@@ -1,6 +1,7 @@
 #pragma once
 
-#include "vulkan_helpers.h"
+#include "pch.h"
+#include "common.h"
 
 // Simple vertex MVP xform & color fragment shader layout
 struct PipelineLayout {

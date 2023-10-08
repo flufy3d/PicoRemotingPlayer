@@ -1,4 +1,9 @@
 #include "pipeline.h"
+#include "vulkan_helpers.h"
+#include "vertexbuffer_base.h"
+#include "shader_program.h"
+#include "pipeline_layout.h"
+#include "render_pass.h"
 
 void Pipeline::Dynamic(VkDynamicState state) {
     dynamicStateEnables.emplace_back(state);

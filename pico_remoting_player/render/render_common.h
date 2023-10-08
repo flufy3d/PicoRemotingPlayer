@@ -1,7 +1,12 @@
 // render_common.h
 #pragma once
 
+#include "pch.h"
+#include "common.h"
+
+
 #include "vulkan_helpers.h"
+#include "geometry.h"
 #include "memory_allocator.h"
 #include "cmd_buffer.h"
 #include "shader_program.h"

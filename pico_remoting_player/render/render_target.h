@@ -1,7 +1,9 @@
 #pragma once
 
-#include "vulkan_helpers.h"
-#include "render/render_pass.h"
+#include "pch.h"
+#include "common.h"
+
+class RenderPass;
 
 // VkImage + framebuffer wrapper
 struct RenderTarget {

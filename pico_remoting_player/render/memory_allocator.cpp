@@ -1,5 +1,7 @@
 #include "memory_allocator.h"
 
+#include "vulkan_helpers.h"
+
 void MemoryAllocator::Init(VkPhysicalDevice physicalDevice, VkDevice device) {
     m_vkDevice = device;
     vkGetPhysicalDeviceMemoryProperties(physicalDevice, &m_memProps);

@@ -1,8 +1,9 @@
 #pragma once
 
+#include "pch.h"
+#include "common.h"
 
-#include "vulkan_helpers.h"
-#include "memory_allocator.h"
+class MemoryAllocator;
 
 struct VertexBufferBase {
     VkBuffer idxBuf{VK_NULL_HANDLE};

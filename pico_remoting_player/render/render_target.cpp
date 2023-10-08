@@ -1,4 +1,6 @@
 #include "render_target.h"
+#include "render_pass.h"
+#include "vulkan_helpers.h"
 
 RenderTarget::~RenderTarget() {
     if (m_vkDevice != nullptr) {

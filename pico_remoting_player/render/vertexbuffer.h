@@ -1,8 +1,8 @@
 // vertexbuffer.h
 #pragma once
 
-#include "vulkan_helpers.h"
-#include "render/vertexbuffer_base.h"
+#include "pch.h"
+#include "common.h"
 
 template <typename T>
 struct VertexBuffer : public VertexBufferBase {

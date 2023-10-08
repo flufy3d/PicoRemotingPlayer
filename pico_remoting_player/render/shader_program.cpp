@@ -1,5 +1,6 @@
 #include "shader_program.h"
 
+#include "vulkan_helpers.h"
 
 ShaderProgram::ShaderProgram() = default;
 

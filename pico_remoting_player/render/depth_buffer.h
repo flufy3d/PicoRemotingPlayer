@@ -1,9 +1,11 @@
 #pragma once
 
-#include "vulkan_helpers.h"
-#include "memory_allocator.h"
-#include "cmd_buffer.h"
+#include "pch.h"
+#include "common.h"
 
+
+class MemoryAllocator;
+class CmdBuffer;
 
 struct DepthBuffer {
     VkDeviceMemory depthMemory{VK_NULL_HANDLE};

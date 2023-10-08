@@ -1,4 +1,5 @@
 #include "pipeline_layout.h"
+#include "vulkan_helpers.h"
 
 PipelineLayout::~PipelineLayout() {
     if (m_vkDevice != nullptr) {

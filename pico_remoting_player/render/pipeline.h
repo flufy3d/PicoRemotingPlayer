@@ -1,10 +1,13 @@
 #pragma once
 
-#include "vulkan_helpers.h"
-#include "pipeline_layout.h"
-#include "render_pass.h"
-#include "shader_program.h"
+#include "pch.h"
+#include "common.h"
+
 #include "vertexbuffer_base.h"
+
+class PipelineLayout;
+class RenderPass;
+class ShaderProgram;
 
 
 // Pipeline wrapper for rendering pipeline state

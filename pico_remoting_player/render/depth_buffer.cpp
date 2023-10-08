@@ -1,5 +1,9 @@
 #include "depth_buffer.h"
 
+#include "vulkan_helpers.h"
+#include "memory_allocator.h"
+#include "cmd_buffer.h"
+
 DepthBuffer::~DepthBuffer() {
     if (m_vkDevice != nullptr) {
         if (depthImage != VK_NULL_HANDLE) {

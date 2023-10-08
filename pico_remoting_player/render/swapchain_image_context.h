@@ -1,16 +1,19 @@
 #pragma once
 
-#include "vulkan_helpers.h"
-#include "memory_allocator.h"
+#include "pch.h"
+#include "common.h"
+
 #include "depth_buffer.h"
 #include "render_pass.h"
 #include "pipeline.h"
-#include "pipeline_layout.h"
-#include "shader_program.h"
+#include "geometry.h"
 #include "vertexbuffer.h"
 #include "render_target.h"
-#include "geometry.h"
 
+
+class MemoryAllocator;
+class PipelineLayout;
+class ShaderProgram;
 
 struct SwapchainImageContext {
     SwapchainImageContext(XrStructureType _swapchainImageType);

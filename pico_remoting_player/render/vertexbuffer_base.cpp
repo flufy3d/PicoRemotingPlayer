@@ -1,4 +1,5 @@
 #include "vertexbuffer_base.h"
+#include "memory_allocator.h"
 
 VertexBufferBase::VertexBufferBase() = default;
 

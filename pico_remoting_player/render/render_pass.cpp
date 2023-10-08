@@ -1,5 +1,7 @@
 #include "render_pass.h"
 
+#include "vulkan_helpers.h"
+
 RenderPass::RenderPass() = default;
 
 bool RenderPass::Create(VkDevice device, VkFormat aColorFmt, VkFormat aDepthFmt) {

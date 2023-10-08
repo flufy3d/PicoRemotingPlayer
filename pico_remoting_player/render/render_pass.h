@@ -1,6 +1,7 @@
 #pragma once
 
-#include "vulkan_helpers.h"
+#include "pch.h"
+#include "common.h"
 
 struct RenderPass {
     VkFormat colorFmt{};

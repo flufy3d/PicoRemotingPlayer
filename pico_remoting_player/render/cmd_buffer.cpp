@@ -1,6 +1,8 @@
 // cmd_buffer.cpp
 #include "cmd_buffer.h"
 
+#include "vulkan_helpers.h"
+
 CmdBuffer::CmdBuffer() = default;
 
 CmdBuffer::~CmdBuffer() {
