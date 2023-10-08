@@ -1,23 +1,9 @@
-// Copyright (c) 2017-2020 The Khronos Group Inc.
-//
-// SPDX-License-Identifier: Apache-2.0
-
 #include "pch.h"
 #include "common.h"
-#include "geometry.h"
+
 #include "graphicsplugin.h"
 #include "my_asset_manager.h"
-#include "render/vulkan_helpers.h"
-#include "render/memory_allocator.h"
-#include "render/cmd_buffer.h"
-#include "render/shader_program.h"
-#include "render/vertexbuffer_base.h"
-#include "render/vertexbuffer.h"
-#include "render/render_pass.h"
-#include "render/render_target.h"
-#include "render/pipeline_layout.h"
-#include "render/pipeline.h"
-#include "render/depth_buffer.h"
+#include "render/render_common.h"
 
 #ifdef XR_USE_GRAPHICS_API_VULKAN
 
@@ -25,64 +11,6 @@
 namespace {
 
 
-
-struct SwapchainImageContext {
-    SwapchainImageContext(XrStructureType _swapchainImageType) : swapchainImageType(_swapchainImageType) {}
-
-    // A packed array of XrSwapchainImageVulkan2KHR's for xrEnumerateSwapchainImages
-    std::vector<XrSwapchainImageVulkan2KHR> swapchainImages;
-    std::vector<RenderTarget> renderTarget;
-    VkExtent2D size{};
-    DepthBuffer depthBuffer{};
-    RenderPass rp{};
-    Pipeline pipe{};
-    XrStructureType swapchainImageType;
-
-    SwapchainImageContext() = default;
-
-    std::vector<XrSwapchainImageBaseHeader*> Create(VkDevice device, MemoryAllocator* memAllocator, uint32_t capacity,
-                                                    const XrSwapchainCreateInfo& swapchainCreateInfo, const PipelineLayout& layout,
-                                                    const ShaderProgram& sp, const VertexBuffer<Geometry::Vertex>& vb) {
-        m_vkDevice = device;
-
-        size = {swapchainCreateInfo.width, swapchainCreateInfo.height};
-        VkFormat colorFormat = (VkFormat)swapchainCreateInfo.format;
-        VkFormat depthFormat = VK_FORMAT_D24_UNORM_S8_UINT;
-        // XXX handle swapchainCreateInfo.sampleCount
-
-        depthBuffer.Create(m_vkDevice, memAllocator, depthFormat, swapchainCreateInfo);
-        rp.Create(m_vkDevice, colorFormat, depthFormat);
-        pipe.Create(m_vkDevice, size, layout, rp, sp, vb);
-
-        swapchainImages.resize(capacity);
-        renderTarget.resize(capacity);
-        std::vector<XrSwapchainImageBaseHeader*> bases(capacity);
-        for (uint32_t i = 0; i < capacity; ++i) {
-            swapchainImages[i] = {swapchainImageType};
-            bases[i] = reinterpret_cast<XrSwapchainImageBaseHeader*>(&swapchainImages[i]);
-        }
-
-        return bases;
-    }
-
-    uint32_t ImageIndex(const XrSwapchainImageBaseHeader* swapchainImageHeader) {
-        auto p = reinterpret_cast<const XrSwapchainImageVulkan2KHR*>(swapchainImageHeader);
-        return (uint32_t)(p - &swapchainImages[0]);
-    }
-
-    void BindRenderTarget(uint32_t index, VkRenderPassBeginInfo* renderPassBeginInfo) {
-        if (renderTarget[index].fb == VK_NULL_HANDLE) {
-            renderTarget[index].Create(m_vkDevice, swapchainImages[index].image, depthBuffer.depthImage, size, rp);
-        }
-        renderPassBeginInfo->renderPass = rp.pass;
-        renderPassBeginInfo->framebuffer = renderTarget[index].fb;
-        renderPassBeginInfo->renderArea.offset = {0, 0};
-        renderPassBeginInfo->renderArea.extent = size;
-    }
-
-   private:
-    VkDevice m_vkDevice{VK_NULL_HANDLE};
-};
 
 
 
