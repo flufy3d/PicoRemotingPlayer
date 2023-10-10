@@ -23,6 +23,7 @@ file(GLOB LOCAL_SOURCE
      "pico_remoting_player/*.cpp"
      "pico_remoting_player/render/*.cpp"
 )
+
 file(GLOB VULKAN_SHADERS "pico_remoting_player/vulkan_shaders/*.glsl")
 
 LINK_DIRECTORIES(openxr_loader/${ANDROID_ABI})

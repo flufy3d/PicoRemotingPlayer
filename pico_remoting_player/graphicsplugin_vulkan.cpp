@@ -2,7 +2,7 @@
 #include "common.h"
 
 #include "graphicsplugin.h"
-#include "my_asset_manager.h"
+
 #include "render/render_common.h"
 
 #ifdef XR_USE_GRAPHICS_API_VULKAN
@@ -176,9 +176,6 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
     }
 
     void InitializeResources() {
-        AssetData assetData = MyAssetManager::Instance().LoadAsset("left_adjusted.png");
-        Log::Write(Log::Level::Info, Fmt("Loaded left_adjusted.png :%d", assetData.length));
-
         std::vector<uint32_t> vertexSPIRV =
 #include "vulkan_shaders/vert.spv"
             ;
@@ -192,6 +189,10 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
         m_shaderProgram.Init(m_vkDevice);
         m_shaderProgram.LoadVertexShader(vertexSPIRV);
         m_shaderProgram.LoadFragmentShader(fragmentSPIRV);
+
+        //create texture resource
+        m_leftImage.Create(m_vkDevice,"left_adjusted.png");
+        m_rightImage.Create(m_vkDevice,"right_adjusted.png");
 
         // Semaphore to block on draw complete
         VkSemaphoreCreateInfo semInfo{VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO};
@@ -344,6 +345,9 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
     CmdBuffer m_cmdBuffer{};
     PipelineLayout m_pipelineLayout{};
     VertexBuffer<Geometry::Vertex> m_drawBuffer{};
+
+    TextureView m_leftImage{};
+    TextureView m_rightImage{};
 
 
 

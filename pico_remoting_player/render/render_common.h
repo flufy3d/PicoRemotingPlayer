@@ -18,3 +18,4 @@
 #include "pipeline.h"
 #include "depth_buffer.h"
 #include "swapchain_image_context.h"
+#include "texture_view.h"
