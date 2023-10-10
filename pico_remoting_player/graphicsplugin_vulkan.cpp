@@ -191,14 +191,16 @@ struct VulkanGraphicsPlugin : public IGraphicsPlugin {
         m_shaderProgram.LoadFragmentShader(fragmentSPIRV);
 
         //create texture resource
-        m_leftImage.Create(m_vkDevice,"left_adjusted.png");
-        m_rightImage.Create(m_vkDevice,"right_adjusted.png");
+
 
         // Semaphore to block on draw complete
         VkSemaphoreCreateInfo semInfo{VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO};
         CHECK_VKCMD(vkCreateSemaphore(m_vkDevice, &semInfo, nullptr, &m_vkDrawDone));
 
         if (!m_cmdBuffer.Init(m_vkDevice, m_queueFamilyIndex)) THROW("Failed to create command buffer");
+
+        m_leftImage.Create(m_vkDevice,m_vkQueue,&m_memAllocator,&m_cmdBuffer,"left_adjusted.png");
+        m_rightImage.Create(m_vkDevice,m_vkQueue,&m_memAllocator,&m_cmdBuffer,"right_adjusted.png");
 
         m_pipelineLayout.Create(m_vkDevice);
 
