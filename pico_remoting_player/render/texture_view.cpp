@@ -31,8 +31,20 @@ void TextureView::Create(VkDevice device, const std::string& filename) {
         Log::Write(Log::Level::Error, "Failed to load texture image!");
         return;
     }
+    // Logging image size and format
+    Log::Write(Log::Level::Info, "Image size: " + std::to_string(m_width) + "x" + std::to_string(m_height));
+    std::string format;
+    switch(m_channels) {
+        case 1: format = "Gray"; break;
+        case 3: format = "RGB"; break;
+        case 4: format = "RGBA"; break;
+        default: format = "Unknown"; break;
+    }
+    Log::Write(Log::Level::Info, "Image format: " + format);
 
     // TODO: Create Vulkan image from loaded pixels
+
+    
 
     CreateImageView();
 }
